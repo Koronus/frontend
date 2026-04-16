@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo } from "react"
 import {
   Activity,
   CheckCircle,
@@ -19,6 +19,7 @@ interface KpiGridProps {
   onSelectMetric: (metric: string) => void
   activeMetric: string
   activeCategory: string
+  selectedAge: BirdAgeGroup
 }
 
 interface Metric {
@@ -34,9 +35,9 @@ interface Metric {
   ageGroup?: string
 }
 
-type BirdAge = "0-3" | "21-30"
+export type BirdAgeGroup = "0-3" | "21-30"
 
-const metricsByAge: Record<BirdAge, Metric[]> = {
+const metricsByAge: Record<BirdAgeGroup, Metric[]> = {
   "0-3": [
     { id: "temperature_0_3", icon: Thermometer, title: "Температура", value: "40.2°C", norm: "40.0-40.8", trend: "up", trendGood: "up", status: "normal", categoryId: "microclimate", ageGroup: "0-3" },
     { id: "humidity_0_3", icon: Droplets, title: "Влажность", value: "70%", norm: "65-75%", trend: "stable", trendGood: "up", status: "normal", categoryId: "microclimate", ageGroup: "0-3" },
@@ -60,10 +61,9 @@ const metricsByAge: Record<BirdAge, Metric[]> = {
 }
 
 export const metrics = metricsByAge["21-30"]
+export const getMetricsForAge = (age: BirdAgeGroup) => metricsByAge[age]
 
-export function KpiGrid({ onSelectMetric, activeMetric, activeCategory }: KpiGridProps) {
-  const [selectedAge, setSelectedAge] = useState<BirdAge>("21-30")
-
+export function KpiGrid({ onSelectMetric, activeMetric, activeCategory, selectedAge }: KpiGridProps) {
   const currentMetrics = metricsByAge[selectedAge]
   const currentCategory = categories.find((cat) => cat.id === activeCategory)
   const filteredMetrics = currentMetrics.filter((metric) => metric.categoryId === activeCategory)
@@ -93,17 +93,12 @@ export function KpiGrid({ onSelectMetric, activeMetric, activeCategory }: KpiGri
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <label className="flex min-w-0 items-center gap-3 rounded-full border border-black/5 bg-white/80 px-4 py-3 text-sm dark:border-white/10 dark:bg-white/5">
-              <span className="text-zinc-500 dark:text-zinc-400">Возраст птиц</span>
-              <select
-                value={selectedAge}
-                onChange={(event) => setSelectedAge(event.target.value as BirdAge)}
-                className="min-w-0 bg-transparent font-medium text-zinc-950 outline-none dark:text-zinc-50"
-              >
-                <option value="0-3">0-3 дня</option>
-                <option value="21-30">21-30 дней</option>
-              </select>
-            </label>
+            <div className="rounded-full border border-black/5 bg-white/80 px-4 py-3 text-sm text-zinc-500 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400">
+              Возрастной срез:{" "}
+              <span className="font-medium text-zinc-950 dark:text-zinc-50">
+                {selectedAge === "0-3" ? "0-3 дня" : "21-30 дней"}
+              </span>
+            </div>
           </div>
         </div>
 

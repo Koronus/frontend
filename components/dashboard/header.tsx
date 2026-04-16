@@ -34,15 +34,6 @@ export function DashboardHeader() {
               Директор по качеству
             </span>
           </nav>
-
-          <div className="mt-3">
-            <h1 className="truncate text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 md:text-3xl">
-              Производственный мониторинг
-            </h1>
-            <p className="truncate text-sm text-zinc-500 dark:text-zinc-400 md:text-base">
-              Лаконичная панель с приоритетами, рисками и динамикой по ключевым метрикам.
-            </p>
-          </div>
         </div>
 
         <div className="flex shrink-0 items-center gap-3">

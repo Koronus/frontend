@@ -119,7 +119,7 @@ export function CategorySidebar({
                 className={cn(
                   "w-full min-w-0 rounded-[22px] border p-4 text-left transition-all",
                   isActive
-                    ? "border-zinc-900 bg-zinc-950 text-white shadow-[0_16px_36px_-24px_rgba(15,23,42,0.8)] dark:border-white dark:bg-white dark:text-zinc-950"
+                    ? "!border-zinc-900 !bg-zinc-950 !text-white hover:!border-zinc-900 hover:!bg-zinc-950 hover:!text-white dark:!border-white dark:!bg-white dark:!text-zinc-950 dark:hover:!border-white dark:hover:!bg-white dark:hover:!text-zinc-950 shadow-[0_16px_36px_-24px_rgba(15,23,42,0.8)]"
                     : "border-black/5 bg-white/70 hover:border-black/10 hover:bg-white dark:border-white/8 dark:bg-white/4 dark:hover:bg-white/8"
                 )}
               >
