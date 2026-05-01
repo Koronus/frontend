@@ -493,7 +493,7 @@ export function NotificationsPage() {
   }, [searchQuery])
 
   return (
-    <main className="flex min-h-0 flex-1 flex-col bg-background rounded-[28px]">
+    <main className="flex min-h-0 flex-1 flex-col bg-background rounded-b-[28px]">
       <div className="border-b border-zinc-200 px-6 py-4">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
           <div>
